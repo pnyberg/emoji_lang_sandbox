@@ -2,45 +2,50 @@
 ### For-loop ####
 ##########################
 
-@ for_loop (loop-action, less_than_bound)
+# for_loop [@expected-stack(top->bottom): less_than_bound, loop_action]
 ⛽
-	💬0💬🔢									# set loop index to zero
-	💬RESERVED_NAME_for_loop_helper💬📱🏃	# start the loop
-	💬RESERVED_NAME_trash💬 📲				# remove the "trash" from the stack
+    💬0💬🔢                           # set loop index to zero
+    💬KEYWORD_for_loop_helper💬📱🏃   # start the loop
 🚘 💬for_loop💬 📲
 
-@ RESERVED_NAME_for_loop_helper (loop-action, less_than_bound, index)
+# KEYWORD_for_loop_helper [@expected-stack(top->bottom): index, less_than_bound, loop_action]
 ⛽
-	# save var helper_index
-	💬RESERVED_NAME_for_loop_helper_index💬 📲			
-	# save var helper_lt_bound
-	💬RESERVED_NAME_for_loop_helper_less_than_bound💬 📲
-	💬RESERVED_NAME_for_loop_helper_index💬📱💬RESERVED_NAME_for_loop_helper_less_than_bound💬📱🐣💬RESERVED_NAME_for_loop_helper_comparison💬 📲
-	# if index < less_than_bound
-	💬RESERVED_NAME_for_loop_helper_comparison💬📱🔚
-		# save var helper_action
-		💬RESERVED_NAME_for_loop_helper_action💬 📲
+    💬KEYWORD_for_loop_index💬📲              # store the for loop-index
+    💬KEYWORD_for_loop_less_than_bound💬📲    # store the less_than_bound
 
-		---------------------------------------------
-		----> save state on stack before action <----
-		---------------------------------------------
-		💬RESERVED_NAME_for_loop_helper_action💬📱				# put action-string on stack
-		💬RESERVED_NAME_for_loop_helper_less_than_bound💬📱		# put less than bound on stack
-		💬RESERVED_NAME_for_loop_helper_index💬📱				# put current loop index on stack
+    # check index < less_than_bound
+    💬KEYWORD_for_loop_index💬📱💬KEYWORD_for_loop_less_than_bound💬📱🐣
+    
+    💬KEYWORD_for_loop_helper_condition💬📲    # store the condition-truthness
 
-		------------------------------
-		----> Execute the action <----
-		------------------------------
-		💬RESERVED_NAME_for_loop_helper_action💬📱🏃
+    # if condition=true (index < less_than_bound)
+    💬KEYWORD_for_loop_helper_condition💬📱🔚
+        💬KEYWORD_for_loop_helper_action💬📲   # store the action (to be able to run it later)
 
-		--------------------------------------------------------------------
-		----> get index and increment it and then add it to the stack) <----
-		--------------------------------------------------------------------
-		💬RESERVED_NAME_for_loop_helper_index💬 📲
-		💬RESERVED_NAME_for_loop_helper_index💬📱💬1💬🔢👫 	# put loop index on stack (incremented)
-		💬RESERVED_NAME_for_loop_helper💬📱🏃					# re-call the loop
-	🐧
-	💬RESERVED_NAME_for_loop_helper_comparison💬📱🚴🔚			# else (index >= less_than_bound)
-		🚲 💬RESERVED_NAME_for_loop_helper_comparison💬 📲
-	🐧
-🚘 💬RESERVED_NAME_for_loop_helper💬 📲
+        ---------------------------------------------
+        ----> save state on stack before action <----
+        ---------------------------------------------
+        💬KEYWORD_for_loop_helper_action💬📱     # put action-string on stack
+        💬KEYWORD_for_loop_less_than_bound💬📱   # put less than bound on stack
+        💬KEYWORD_for_loop_index💬📱             # put current loop index on stack
+
+        ------------------------------
+        ----> Execute the action <----
+        ------------------------------
+        💬KEYWORD_for_loop_helper_action💬📱🏃
+
+        --------------------------------------------------------------------
+        ----> get index and increment it and then add it to the stack) <----
+        --------------------------------------------------------------------
+        💬KEYWORD_for_loop_index💬📲              # load the for loop-index from stack
+        💬KEYWORD_for_loop_index💬📱💬1💬🔢👫    # put loop index on stack (after incrementing)
+        💬KEYWORD_for_loop_helper💬📱🏃           # re-call the loop-function (basically restart the loop)
+    🐧
+    # else (index >= less_than_bound)
+    #  do nothing
+🚘 💬KEYWORD_for_loop_helper💬 📲
+
+### Example-main
+⛽💬Looping!💬➡🚘
+💬1💬🔢
+💬for_loop💬📱🏃
