@@ -1,6 +1,6 @@
-##########################
+#################
 ### For-loop ####
-##########################
+#################
 
 # for_loop [@expected-stack(top->bottom): less_than_bound, loop_action]
 ⛽
