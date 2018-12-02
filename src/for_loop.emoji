@@ -5,47 +5,50 @@
 # for_loop [@expected-stack(top->bottom): less_than_bound, loop_action]
 ⛽
     💬0💬🔢💿                         # set loop index to zero (int)
-    💬KEYWORD_for_loop_helper💬📱🏃   # start the loop
+    💬KEYWORD_FOR_loop_helper💬📱🏃   # start the loop
 🚘 💬for_loop💬 📲
 
-# KEYWORD_for_loop_helper [@expected-stack(top->bottom): index, less_than_bound, loop_action]
+# KEYWORD_FOR_loop_helper [@expected-stack(top->bottom): index, less_than_bound, loop_action]
 ⛽
-    💬KEYWORD_for_loop_index💬📲              # store the for loop-index
-    💬KEYWORD_for_loop_less_than_bound💬📲    # store the less_than_bound
+    💬KEYWORD_FOR_loop_index💬📲              # store the for loop-index
+    💬KEYWORD_FOR_loop_less_than_bound💬📲    # store the less_than_bound
 
     # check index < less_than_bound
-    💬KEYWORD_for_loop_index💬📱💬KEYWORD_for_loop_less_than_bound💬📱🐣
+    💬KEYWORD_FOR_loop_index💬📱💬KEYWORD_FOR_loop_less_than_bound💬📱🐣
     
-    💬KEYWORD_for_loop_helper_condition💬📲    # store the condition-truthness
+    💬KEYWORD_FOR_loop_helper_condition💬📲    # store the condition-truthness
 
     # if condition=true (index < less_than_bound)
-    💬KEYWORD_for_loop_helper_condition💬📱🔚
-        💬KEYWORD_for_loop_helper_action💬📲   # store the action (to be able to run it later)
+    💬KEYWORD_FOR_loop_helper_condition💬📱🔚
+        💬KEYWORD_FOR_loop_helper_action💬📲   # store the action (to be able to run it later)
 
         ---------------------------------------------
         ----> save state on stack before action <----
         ---------------------------------------------
-        💬KEYWORD_for_loop_helper_action💬📱     # put action-string on stack
-        💬KEYWORD_for_loop_less_than_bound💬📱   # put less than bound on stack
-        💬KEYWORD_for_loop_index💬📱             # put current loop index on stack
+        💬KEYWORD_FOR_loop_helper_action💬📱     # put action-string on stack
+        💬KEYWORD_FOR_loop_less_than_bound💬📱   # put less than bound on stack
+        💬KEYWORD_FOR_loop_index💬📱             # put current loop index on stack
 
         ------------------------------
         ----> Execute the action <----
         ------------------------------
-        💬KEYWORD_for_loop_helper_action💬📱🏃
+        💬KEYWORD_FOR_loop_helper_action💬📱🏃
 
         --------------------------------------------------------------------
         ----> get index and increment it and then add it to the stack) <----
         --------------------------------------------------------------------
-        💬KEYWORD_for_loop_index💬📲              # load the for loop-index from stack
-        💬KEYWORD_for_loop_index💬📱💬1💬🔢💿👫  # put loop index on stack (after incrementing)
-        💬KEYWORD_for_loop_helper💬📱🏃           # re-call the loop-function (basically restart the loop)
+        💬KEYWORD_FOR_loop_index💬📲              # load the for loop-index from stack
+        💬KEYWORD_FOR_loop_index💬📱💬1💬🔢💿👫  # put loop index on stack (after incrementing)
+        💬KEYWORD_FOR_loop_helper💬📱🏃           # re-call the loop-function (basically restart the loop)
     🐧
     # else (index >= less_than_bound)
     #  do nothing
-🚘 💬KEYWORD_for_loop_helper💬 📲
+🚘 💬KEYWORD_FOR_loop_helper💬 📲
 
-### Example-main
+
+#####################
+### Example-main ####
+#####################
 ⛽💬Looping!💬➡🚘
 💬3💬🔢💿
 💬for_loop💬📱🏃
