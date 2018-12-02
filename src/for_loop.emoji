@@ -4,7 +4,7 @@
 
 # for_loop [@expected-stack(top->bottom): less_than_bound, loop_action]
 ⛽
-    💬0💬🔢                           # set loop index to zero
+    💬0💬🔢💿                         # set loop index to zero (int)
     💬KEYWORD_for_loop_helper💬📱🏃   # start the loop
 🚘 💬for_loop💬 📲
 
@@ -38,7 +38,7 @@
         ----> get index and increment it and then add it to the stack) <----
         --------------------------------------------------------------------
         💬KEYWORD_for_loop_index💬📲              # load the for loop-index from stack
-        💬KEYWORD_for_loop_index💬📱💬1💬🔢👫    # put loop index on stack (after incrementing)
+        💬KEYWORD_for_loop_index💬📱💬1💬🔢💿👫  # put loop index on stack (after incrementing)
         💬KEYWORD_for_loop_helper💬📱🏃           # re-call the loop-function (basically restart the loop)
     🐧
     # else (index >= less_than_bound)
@@ -47,5 +47,5 @@
 
 ### Example-main
 ⛽💬Looping!💬➡🚘
-💬1💬🔢
+💬3💬🔢💿
 💬for_loop💬📱🏃
