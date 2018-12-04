@@ -12,7 +12,7 @@
 ⛽
     💬KEYWORD_FOR_loop_index💬📲              # store the for loop-index
     💬KEYWORD_FOR_loop_less_than_bound💬📲    # store the less_than_bound
-    💬KEYWORD_FOR_loop_helper_action💬📲   # store the action (to be able to run it later)
+    💬KEYWORD_FOR_loop_helper_action💬📲      # store the action (to be able to run it later)
 
     # check index < less_than_bound
     💬KEYWORD_FOR_loop_index💬📱💬KEYWORD_FOR_loop_less_than_bound💬📱🐣
@@ -70,8 +70,8 @@
 # KEYWORD_QSORT_ARRAY_helper [@expected-stack(top->bottom): less_than_bound, start_index, number_array_reference]
 ⛽
 	# saving the parameters in variables
-	💬KEYWORD_QSORT_ARRAY_less_than_bound💬📲 	# less_than_bound
-	💬KEYWORD_QSORT_ARRAY_index💬📲 		# index
+	💬KEYWORD_QSORT_ARRAY_less_than_bound💬📲 		# less_than_bound
+	💬KEYWORD_QSORT_ARRAY_index💬📲 			# index
 	💬KEYWORD_QSORT_ARRAY_number_array_reference💬📲 	# array-reference
 
 	# checking if list can be sorted further (less-than-bound - start-index > 1)
