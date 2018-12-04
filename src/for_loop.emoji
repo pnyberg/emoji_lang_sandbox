@@ -12,7 +12,7 @@
 ⛽
     💬KEYWORD_FOR_loop_index💬📲              # store the for loop-index
     💬KEYWORD_FOR_loop_less_than_bound💬📲    # store the less_than_bound
-    💬KEYWORD_FOR_loop_helper_action💬📲   # store the action (to be able to run it later)
+    💬KEYWORD_FOR_loop_helper_action💬📲      # store the action (to be able to run it later)
 
     # check index < less_than_bound
     💬KEYWORD_FOR_loop_index💬📱💬KEYWORD_FOR_loop_less_than_bound💬📱🐣
