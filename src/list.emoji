@@ -1,0 +1,80 @@
+ - List not useable due to not being able to create Strings from concatenated variables
+###########################
+### List - not working ####
+###########################
+
+/*
+ * Used for creating a new list-object
+ */
+# list [@expected-stack(top->bottom): list_reference_name]
+⛽
+	# save the list reference-name in variable
+	[list_reference_name] 💬KEYWORD_list_reference_name💬📲
+
+	# store a new list in the variable given by the list_reference_name
+	📚💬KEYWORD_list_reference_name💬📱📲
+
+	💬KEYWORD_list_reference_name💬📱📱 💬KEYWORD_list_size💬 📌
+	💬0💬🔢💿 💬KEYWORD_list_size💬 📲
+🚘 💬list💬 📲
+
+
+# list_size [@expected-stack(top->bottom): list_reference_name]
+#    $ return list_size
+⛽
+	[list_reference_name]📱 💬0💬🔢💿 🔑 📱
+🚘 💬list_size💬 📲
+
+
+// TODO: make it so that new indices are generated when necessary (on the form index_X) - cannot be done at this point in emoji
+# list_add [@expected-stack(top->bottom): list_reference_name, item_data]
+⛽
+	# save the list reference-name in variable
+	[list_reference_name] 💬KEYWORD_list_reference_name💬📲
+
+	💬KEYWORD_list_reference_name💬📱📱 💬index_0💬 📌
+	[item_data] 💬index_0💬 📲
+	💬KEYWORD_list_reference_name💬📱📱 💬0💬🔢💿 🔑 📱 💬1💬🔢💿 👫 💬KEYWORD_list_reference_name💬📱📱 💬0💬🔢💿 🔑 📲
+🚘 💬list_add💬 📲
+
+
+# list_get [@expected-stack(top->bottom): list_reference_name, list_index]
+#    $ return value at index list_index
+⛽
+	# save the list reference-name in variable
+	[list_reference_name] 💬KEYWORD_list_reference_name💬📲
+
+	# save the list index in variable
+	[list_index] 💬KEYWORD_list_index💬📲
+
+	💬KEYWORD_list_reference_name💬📱📱 💬KEYWORD_list_index💬📱 💬1💬🔢💿 👫 🔑📱
+🚘 💬list_get💬 📲
+
+
+#####################
+### Example-main ####
+#####################
+
+# test_list = new list()
+💬test_list💬💬list💬📱🏃
+
+# print(test_list.list_size())
+💬test_list💬💬list_size💬📱🏃➡
+
+# test_list.add(15)
+💬15💬🔢💿💬test_list💬💬list_add💬📱🏃
+
+# print(test_list.list_size())
+💬test_list💬💬list_size💬📱🏃➡
+
+# print(test_list.get(0))
+💬0💬🔢💿💬test_list💬💬list_get💬📱🏃➡
+
+# test_list.add(5)
+💬5💬🔢💿💬test_list💬💬list_add💬📱🏃
+
+# print(test_list.list_size())
+💬test_list💬💬list_size💬📱🏃➡
+
+# print(test_list.get(0))
+💬0💬🔢💿💬test_list💬💬list_get💬📱🏃➡
