@@ -12,3 +12,11 @@ Example-mains include in the code.
 
 ## Quicksort (sorting int-array)
 [Code](src/quicksort_array.emoji)
+
+## Quicksort (sorting simple int-list)
+[Code](src/quicksort_list.emoji)
+
+## List (although not working)
+[Code](src/list.emoji)
+
+May be updated more in the future!
