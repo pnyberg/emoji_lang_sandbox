@@ -1,4 +1,4 @@
- - List not useable due to not being able to create Strings from concatenated variables
+ - List not finished yet
 ###########################
 ### List - not working ####
 ###########################
@@ -26,7 +26,7 @@
 🚘 💬list_size💬 📲
 
 
-// TODO: make it so that new indices are generated when necessary (on the form index_X) - cannot be done at this point in emoji
+// TODO: make it so that new indices are generated when necessary (on the form index_X) - basically adding "KEYWORD_" + [list_name] + "_index_" + [index]
 # list_add [@expected-stack(top->bottom): list_reference_name, item_data]
 ⛽
 	# save the list reference-name in variable
