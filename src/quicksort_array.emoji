@@ -51,10 +51,10 @@
 
 # quicksort_array [@expected-stack(top->bottom): number_array_reference]
 ⛽
-	# save list-reference in variable
+	# save array-reference in variable
 	💬KEYWORD_QSORT_ARRAY_number_array_reference💬📲
 
-	# put list-reference on stack
+	# put array-reference on stack
 	💬KEYWORD_QSORT_ARRAY_number_array_reference💬📱
 
 	# put start_index on stack
@@ -74,7 +74,7 @@
 	💬KEYWORD_QSORT_ARRAY_index💬📲 			# index
 	💬KEYWORD_QSORT_ARRAY_number_array_reference💬📲 	# array-reference
 
-	# checking if list can be sorted further (less-than-bound - start-index > 1)
+	# checking if array can be sorted further (less-than-bound - start-index > 1)
 	💬KEYWORD_QSORT_ARRAY_less_than_bound💬📱 💬KEYWORD_QSORT_ARRAY_index💬📱 🌊 💬1💬🔢💿 🐔 🔚 
 		# put values on stack before swapper-call
 		💬KEYWORD_QSORT_ARRAY_number_array_reference💬📱
@@ -174,11 +174,11 @@
 	# create some useful variables
 	💬KEYWORD_QSORT_ARRAY_number_array_reference💬📱📱 💬KEYWORD_QSORT_ARRAY_number_array_reference_old💬📲
 	📚 💬KEYWORD_QSORT_ARRAY_number_array_reference_new💬 📲
-	💬KEYWORD_QSORT_ARRAY_number_array_reference_old💬📱📃 💬KEYWORD_QSORT_ARRAY_number_array_reference_old_list_length💬📲
+	💬KEYWORD_QSORT_ARRAY_number_array_reference_old💬📱📃 💬KEYWORD_QSORT_ARRAY_number_array_reference_old_array_length💬📲
 
 	💬0💬🔢💿 💬KEYWORD_QSORT_ARRAY_i💬📲
 
-	# for-loop for making new list with swap (index1<->index2)
+	# for-loop for making new array with swap (index1<->index2)
 	⛽
 		💬KEYWORD_QSORT_ARRAY_i💬📱 💬KEYWORD_QSORT_ARRAY_swap_index_1💬📱 👬 💬KEYWORD_QSORT_ARRAY_bool_i_index_1💬📲
 		💬KEYWORD_QSORT_ARRAY_i💬📱 💬KEYWORD_QSORT_ARRAY_swap_index_2💬📱 👬 💬KEYWORD_QSORT_ARRAY_bool_i_index_2💬📲
@@ -200,8 +200,8 @@
 			💬KEYWORD_QSORT_ARRAY_number_array_reference_new💬📱 💬KEYWORD_QSORT_ARRAY_number_array_reference_old💬📱 💬KEYWORD_QSORT_ARRAY_i💬📱 🔑 📌
 		🐧
 		💬1💬🔢💿 💬KEYWORD_QSORT_ARRAY_i💬📱 👫 💬KEYWORD_QSORT_ARRAY_i💬📲
-	🚘 💬KEYWORD_QSORT_ARRAY_number_array_reference_old_list_length💬📱 💬for_loop💬📱🏃
-	# set new-list as the main-list
+	🚘 💬KEYWORD_QSORT_ARRAY_number_array_reference_old_array_length💬📱 💬for_loop💬📱🏃
+	# set new array as the main array
 	💬KEYWORD_QSORT_ARRAY_number_array_reference_new💬📱 💬KEYWORD_QSORT_ARRAY_number_array_reference💬📱📲
 🚘 💬KEYWORD_QSORT_ARRAY_swap💬 📲
 
@@ -211,19 +211,19 @@
 #####################
 
 # fill array with numbers
-📚💬list💬📲
-💬list💬📱 💬9💬🔢💿 📌
-💬list💬📱 💬7💬🔢💿 📌
-💬list💬📱 💬6💬🔢💿 📌
-💬list💬📱 💬5💬🔢💿 📌
-💬list💬📱 💬4💬🔢💿 📌
-💬list💬📱 💬3💬🔢💿 📌
-💬list💬📱 💬2💬🔢💿 📌
-💬list💬📱 💬1💬🔢💿 📌
+📚💬array💬📲
+💬array💬📱 💬9💬🔢💿 📌
+💬array💬📱 💬7💬🔢💿 📌
+💬array💬📱 💬6💬🔢💿 📌
+💬array💬📱 💬5💬🔢💿 📌
+💬array💬📱 💬4💬🔢💿 📌
+💬array💬📱 💬3💬🔢💿 📌
+💬array💬📱 💬2💬🔢💿 📌
+💬array💬📱 💬1💬🔢💿 📌
 
-💬list💬📱 ➡
+💬array💬📱 ➡
 
 # run quicksort with array-reference as a parameter
-💬list💬💬quicksort_array💬📱🏃
+💬array💬💬quicksort_array💬📱🏃
 
-💬list💬📱 ➡
+💬array💬📱 ➡
