@@ -1,0 +1,222 @@
+#################
+### For-loop ####
+#################
+
+# for_loop [@expected-stack(top->bottom): less_than_bound, loop_action]
+⛽
+    💬0💬🔢💿                         # set loop index to zero (int)
+    💬KEYWORD_FOR_loop_helper💬📱🏃   # start the loop
+🚘 💬for_loop💬 📲
+
+# KEYWORD_FOR_loop_helper [@expected-stack(top->bottom): index, less_than_bound, loop_action]
+⛽
+    💬KEYWORD_FOR_loop_index💬📲              # store the for loop-index
+    💬KEYWORD_FOR_loop_less_than_bound💬📲    # store the less_than_bound
+    💬KEYWORD_FOR_loop_helper_action💬📲      # store the action (to be able to run it later)
+
+    # check index < less_than_bound
+    💬KEYWORD_FOR_loop_index💬📱💬KEYWORD_FOR_loop_less_than_bound💬📱🐣
+    
+    💬KEYWORD_FOR_loop_helper_condition💬📲    # store the condition-truthness
+
+    # if condition=true (index < less_than_bound)
+    💬KEYWORD_FOR_loop_helper_condition💬📱🔚
+        ---------------------------------------------
+        ----> save state on stack before action <----
+        ---------------------------------------------
+        💬KEYWORD_FOR_loop_helper_action💬📱     # put action-string on stack
+        💬KEYWORD_FOR_loop_less_than_bound💬📱   # put less than bound on stack
+        💬KEYWORD_FOR_loop_index💬📱             # put current loop index on stack
+
+        ------------------------------
+        ----> Execute the action <----
+        ------------------------------
+        💬KEYWORD_FOR_loop_helper_action💬📱🏃
+
+        --------------------------------------------------------------------
+        ----> get index and increment it and then add it to the stack) <----
+        --------------------------------------------------------------------
+        💬KEYWORD_FOR_loop_index💬📲              # load the for loop-index from stack
+        💬KEYWORD_FOR_loop_index💬📱💬1💬🔢💿👫  # put loop index on stack (after incrementing)
+        💬KEYWORD_FOR_loop_helper💬📱🏃           # re-call the loop-function (basically restart the loop)
+    🐧
+    # else (index >= less_than_bound)
+    #  do nothing
+🚘 💬KEYWORD_FOR_loop_helper💬 📲
+
+
+###########################
+### Defining Quicksort ####
+###########################
+
+# quicksort_list [@expected-stack(top->bottom): number_list_reference]
+⛽
+	# save list-reference in variable
+	💬KEYWORD_QSORT_LIST_number_list_reference💬📲
+
+	# put list-reference on stack
+	💬KEYWORD_QSORT_LIST_number_list_reference💬📱
+
+	# put start_index on stack
+	💬0💬🔢💿
+
+	# put less_than_bound on stack (calculated from size of number_list_reference)
+	💬KEYWORD_QSORT_LIST_number_list_reference💬📱📱📃
+
+	# call on helper method
+	💬KEYWORD_QSORT_LIST_helper💬📱🏃
+🚘 💬quicksort_list💬 📲
+
+# KEYWORD_QSORT_LIST_helper [@expected-stack(top->bottom): less_than_bound, start_index, number_list_reference]
+⛽
+	# saving the parameters in variables
+	💬KEYWORD_QSORT_LIST_less_than_bound💬📲 		# less_than_bound
+	💬KEYWORD_QSORT_LIST_index💬📲 			# index
+	💬KEYWORD_QSORT_LIST_number_list_reference💬📲 	# list-reference
+
+	# checking if list can be sorted further (less-than-bound - start-index > 1)
+	💬KEYWORD_QSORT_LIST_less_than_bound💬📱 💬KEYWORD_QSORT_LIST_index💬📱 🌊 💬1💬🔢💿 🐔 🔚 
+		# put values on stack before swapper-call
+		💬KEYWORD_QSORT_LIST_number_list_reference💬📱
+		💬KEYWORD_QSORT_LIST_index💬📱
+		💬KEYWORD_QSORT_LIST_less_than_bound💬📱
+
+		# call "swapper_checker(less_than_bound, start_index, number_list_reference)"
+		💬KEYWORD_QSORT_LIST_number_list_reference💬📱 💬KEYWORD_QSORT_LIST_index💬📱 💬KEYWORD_QSORT_LIST_less_than_bound💬📱 💬KEYWORD_QSORT_LIST_swapper_checker💬📱🏃
+
+		# take the returned pivot index and split on it (then creating two new helper-calls, left and right)
+		💬KEYWORD_QSORT_LIST_new_pivot💬📲 # new pivot-index from swapper_checker
+
+		# retrieve saved values from stack
+		💬KEYWORD_QSORT_LIST_less_than_bound💬📲
+		💬KEYWORD_QSORT_LIST_index💬📲 
+		💬KEYWORD_QSORT_LIST_number_list_reference💬📲 
+
+		# put values on stack for right-call
+		💬KEYWORD_QSORT_LIST_number_list_reference💬📱
+		💬KEYWORD_QSORT_LIST_new_pivot💬📱
+		💬KEYWORD_QSORT_LIST_less_than_bound💬📱
+
+		# call "quicksort_helper(new_pivot, index, number_list_reference)" - "left call"
+		💬KEYWORD_QSORT_LIST_number_list_reference💬📱 💬KEYWORD_QSORT_LIST_index💬📱 💬KEYWORD_QSORT_LIST_new_pivot💬📱 💬KEYWORD_QSORT_LIST_helper💬📱🏃
+
+		# retrieve saved values from stack
+		💬KEYWORD_QSORT_LIST_less_than_bound💬📲
+		💬KEYWORD_QSORT_LIST_new_pivot💬📲
+		💬KEYWORD_QSORT_LIST_number_list_reference💬📲 
+
+		# call "quicksort_helper(less_than_bound, new_pivot+1, number_list_reference)" - "right call"
+		💬KEYWORD_QSORT_LIST_number_list_reference💬📱 💬KEYWORD_QSORT_LIST_new_pivot💬📱 💬1💬🔢💿 👫 💬KEYWORD_QSORT_LIST_less_than_bound💬📱 💬KEYWORD_QSORT_LIST_helper💬📱🏃
+	🐧
+🚘 💬KEYWORD_QSORT_LIST_helper💬 📲
+
+# KEYWORD_QSORT_LIST_swapper_checker [@expected-stack(top->bottom): less_than_bound, pivot_index, number_list_reference]
+#    $ return final_pivot_index
+⛽
+	# saving the parameters in variables
+	💬KEYWORD_QSORT_LIST_less_than_bound💬📲
+	💬KEYWORD_QSORT_LIST_pivot_index💬📲
+	💬KEYWORD_QSORT_LIST_number_list_reference💬📲
+
+	# int compare_index = less_than_bound - 1
+	💬KEYWORD_QSORT_LIST_less_than_bound💬📱 💬1💬🔢💿 🌊 💬KEYWORD_QSORT_LIST_compare_index💬📲
+	# boolean less_than_compare = true
+	🚲 💬KEYWORD_QSORT_LIST_less_than_compare💬📲
+
+	# int loop_rounds = compare_index - pivot_index
+	💬KEYWORD_QSORT_LIST_compare_index💬📱 💬KEYWORD_QSORT_LIST_pivot_index💬📱 🌊 💬KEYWORD_QSORT_LIST_loop_rounds💬📲
+
+	⛽
+		💬KEYWORD_QSORT_LIST_number_list_reference💬📱📱 💬KEYWORD_QSORT_LIST_pivot_index💬📱 🔑📱 💬KEYWORD_QSORT_LIST_pivot_element💬📲
+		💬KEYWORD_QSORT_LIST_number_list_reference💬📱📱 💬KEYWORD_QSORT_LIST_compare_index💬📱 🔑📱 💬KEYWORD_QSORT_LIST_compare_element💬📲
+
+		# if pivot has less index than compare-index
+		💬KEYWORD_QSORT_LIST_less_than_compare💬📱 🔚
+			💬KEYWORD_QSORT_LIST_pivot_element💬📱 💬KEYWORD_QSORT_LIST_compare_element💬📱 🐔 💬KEYWORD_QSORT_LIST_should_swap💬📲
+		🐧
+		# else check when pivot has higher index than compare-index
+		💬KEYWORD_QSORT_LIST_less_than_compare💬📱 🚴 🔚
+			💬KEYWORD_QSORT_LIST_pivot_element💬📱 💬KEYWORD_QSORT_LIST_compare_element💬📱 🐣 💬KEYWORD_QSORT_LIST_should_swap💬📲
+		🐧
+
+		💬KEYWORD_QSORT_LIST_should_swap💬📱 🔚
+			# call "swap(compare_index, pivot_index, number_list_reference)"
+			💬KEYWORD_QSORT_LIST_number_list_reference💬📱 💬KEYWORD_QSORT_LIST_pivot_index💬📱 💬KEYWORD_QSORT_LIST_compare_index💬📱 💬KEYWORD_QSORT_LIST_swap💬📱🏃
+
+			# swap values between pivot- and compare-index-variables
+			💬KEYWORD_QSORT_LIST_pivot_index💬📱 💬KEYWORD_QSORT_LIST_temp💬📲
+			💬KEYWORD_QSORT_LIST_compare_index💬📱 💬KEYWORD_QSORT_LIST_pivot_index💬📲
+			💬KEYWORD_QSORT_LIST_temp💬📱 💬KEYWORD_QSORT_LIST_compare_index💬📲
+
+			# when pivot change side
+			💬KEYWORD_QSORT_LIST_less_than_compare💬📱 🚴 💬KEYWORD_QSORT_LIST_less_than_compare💬📲
+		🐧
+
+		💬KEYWORD_QSORT_LIST_less_than_compare💬📱 🔚
+			💬KEYWORD_QSORT_LIST_compare_index💬📱 💬1💬🔢💿 🌊 💬KEYWORD_QSORT_LIST_compare_index💬📲
+		🐧
+		💬KEYWORD_QSORT_LIST_less_than_compare💬📱 🚴 🔚
+			💬KEYWORD_QSORT_LIST_compare_index💬📱 💬1💬🔢💿 👫 💬KEYWORD_QSORT_LIST_compare_index💬📲
+		🐧
+	🚘 💬KEYWORD_QSORT_LIST_loop_rounds💬📱 💬for_loop💬📱🏃
+
+	# return pivot-index value (by putting it on the top of the stack)
+	💬KEYWORD_QSORT_LIST_pivot_index💬📱 
+🚘 💬KEYWORD_QSORT_LIST_swapper_checker💬 📲
+
+# KEYWORD_QSORT_LIST_swap [@expected-stack(top->bottom): swap_index_1, swap_index_2, number_list_reference]
+⛽
+	# saving the parameters in variables
+	💬KEYWORD_QSORT_LIST_swap_index_1💬📲
+	💬KEYWORD_QSORT_LIST_swap_index_2💬📲
+	💬KEYWORD_QSORT_LIST_number_list_reference💬📲
+
+	# perform the swap
+	💬KEYWORD_QSORT_LIST_number_list_reference💬📱📱 💬KEYWORD_QSORT_LIST_swap_index_1💬📱 🔑📱 💬KEYWORD_QSORT_LIST_temp💬📲
+	💬KEYWORD_QSORT_LIST_number_list_reference💬📱📱 💬KEYWORD_QSORT_LIST_swap_index_2💬📱 🔑📱 💬KEYWORD_QSORT_LIST_number_list_reference💬📱📱 💬KEYWORD_QSORT_LIST_swap_index_1💬📱 🔑📲
+	💬KEYWORD_QSORT_LIST_temp💬📱 💬KEYWORD_QSORT_LIST_number_list_reference💬📱📱 💬KEYWORD_QSORT_LIST_swap_index_2💬📱 🔑📲
+🚘 💬KEYWORD_QSORT_LIST_swap💬 📲
+
+
+#####################
+### Example-main ####
+#####################
+
+💬9💬🔢💿💬index_0💬📲
+💬7💬🔢💿💬index_1💬📲
+💬6💬🔢💿💬index_2💬📲
+💬5💬🔢💿💬index_3💬📲
+💬4💬🔢💿💬index_4💬📲
+💬3💬🔢💿💬index_5💬📲
+💬2💬🔢💿💬index_6💬📲
+💬1💬🔢💿💬index_7💬📲
+
+📚💬indexed_list💬📲
+💬indexed_list💬📱 💬index_0💬 📌
+💬indexed_list💬📱 💬index_1💬 📌
+💬indexed_list💬📱 💬index_2💬 📌
+💬indexed_list💬📱 💬index_3💬 📌
+💬indexed_list💬📱 💬index_4💬 📌
+💬indexed_list💬📱 💬index_5💬 📌
+💬indexed_list💬📱 💬index_6💬 📌
+💬indexed_list💬📱 💬index_7💬 📌
+
+💬indexed_list💬📱 ➡
+💬0💬🔢💿💬list_index💬📲
+⛽
+	💬indexed_list💬📱 💬list_index💬📱 🔑📱➡
+	💬list_index💬📱 💬1💬🔢💿 👫💿 💬list_index💬📲
+🚘 💬indexed_list💬📱📃 💬for_loop💬📱🏃
+
+💬💬➡
+💬running quicksort💬 ➡
+💬💬➡
+# run quicksort with array-reference as a parameter
+💬indexed_list💬💬quicksort_list💬📱🏃
+
+💬indexed_list💬📱 ➡
+💬0💬🔢💿💬list_index💬📲
+⛽
+	💬indexed_list💬📱 💬list_index💬📱 🔑📱➡
+	💬list_index💬📱 💬1💬🔢💿 👫💿 💬list_index💬📲
+🚘 💬indexed_list💬📱📃 💬for_loop💬📱🏃
